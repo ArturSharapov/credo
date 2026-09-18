@@ -24,6 +24,8 @@ Read each matching skill before its part of the work. Several rows may apply to 
 
 Select by the requested activity. A question about a function calls for explanation; a request to change it also calls for construction and verification. For a review, use the linked skills' evaluation criteria without treating their implementation steps as a request to edit code. The commit skill distinguishes naming and grouping proposals from authorized repository operations.
 
+The [issue-findings](issue-findings/SKILL.md) skill is manual-only. Read and apply it only when the user explicitly invokes `$issue-findings`; do not select it automatically through Credo.
+
 ## Resolve project and skill paths
 
 Skill links above are relative to this file. The target project's `architecture-map.md` belongs to the project being worked on, even when Credo is installed elsewhere.
