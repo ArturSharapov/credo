@@ -18,7 +18,7 @@ Good flow comment:
 // Ensure the path stays within the safe region, including its start and end.
 ```
 
-If a following block charges a cost only after validation, give that block its own action comment when the sequence is non-obvious. Do not comment every assignment or extract `ensure_path` solely to give the condition a name. Preserve the actual project terms when adapting this example.
+If a following block charges a cost only after validation, give that distinct responsibility its own action comment so the reader can recognize the next phase while scanning. Do not comment every assignment or extract `ensure_path` solely to give the condition a name. Preserve the actual project terms when adapting this example.
 
 A component definition comment has a different job: state the component's observable effect and its conditions. Do not fill it with parser storage details or implementation history.
 

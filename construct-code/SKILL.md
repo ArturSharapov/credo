@@ -26,6 +26,8 @@ For function extraction, definition behavior, or transaction-stage changes, read
 
 Start from the intended behavior and accepted structural pattern. Reuse the smallest existing set of owners that can express it. A rename changes the terminology consistently through variables, constants, fields, consumers, and comments within scope; it does not authorize an algorithm change.
 
+When adding or changing behavioral blocks, apply [explain-code](../explain-code/SKILL.md) to their flow comments, including deciding where a comment is missing. This is part of implementation even when the request does not mention comments.
+
 Inspect the diff for every added function, method, protocol implementation, type, field, and module. Each must have a concrete architectural role or meet the extraction rule above. Inline or remove those that do not. Check consumer sites before asserting reuse. Confirm that optional component contributions did not move to a shared coordinator and that core operations retained their accepted owners.
 
 Keep the current user edits intact. Do not format or rewrite unrelated files as part of a local change. Use the project's verification workflow before claiming completion; compilation alone does not establish architectural compliance.

@@ -3,6 +3,8 @@
 ## Contents
 
 - Working interpretation
+- Recognize a missing workflow marker
+- Identify the action in its actual context
 - Original restoration request
 - Logical length and structure
 - Encoding examples from the maintainer
@@ -22,6 +24,36 @@ Do not optimize for the fewest lines, uniform width, one sentence per line, or l
 After a broad edit, inspect the comments as a developer rather than trusting a length search.
 
 The prompts below are preserved verbatim as evidence of the maintainer's preferences. Preserve their lessons about meaning, detail, emphasis, and logical grouping. Their file-specific repair requests, domain notation, and exact separators apply to the original cases; they do not prescribe those conventions for other projects.
+
+## Recognize a missing workflow marker
+
+Suppose a scheduling routine already has a comment about selecting available workers. After selecting them and computing their eligible work, a newly inserted block removes unavailable workers from each reservation's eligible-worker set and drops reservations whose sets are now empty. The block uses ordinary filtering operations, but performs a distinct responsibility within the larger scheduling flow.
+
+The earlier scheduling comment does not identify this cleanup phase. Add a marker immediately before it:
+
+```text
+// Remove unavailable workers from reservations, then drop reservations with no eligible workers.
+```
+
+This preserves both parts of the block's job and their order. "Update reservations" hides that work; separate comments for every filtering assignment would add noise. The reason for the marker is that a developer should recognize this responsibility while scanning the function, even when the code itself is straightforward. Look for the same omission in the other affected functions rather than fixing only the highlighted block.
+
+## Identify the action in its actual context
+
+Suppose a shared update routine changes resources, subscriptions, and cached results. A cache cleanup block currently says:
+
+```text
+// An old entry cannot survive relocation, removal, or replacement of its resource.
+```
+
+The comment does not identify which entries it concerns and states a constraint rather than the cleanup action. If those are exactly the conditions the code handles, write:
+
+```text
+// Remove cached results whose resources were relocated, removed, or replaced during the update.
+```
+
+The correction names the affected concept, describes the action, and preserves each invalidating case and its place in the update flow. "Remove stale entries" would lose both the contextual distinction and the concrete conditions. Inside a dedicated cache routine, less qualification may be sufficient; read the comment in its real location instead of repeating a subsystem name mechanically.
+
+These examples illustrate workflow visibility and contextual precision. Adapt their terms and conditions to verified behavior; they do not prescribe a scheduling or caching design.
 
 ## Original restoration request
 

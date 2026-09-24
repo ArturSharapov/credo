@@ -17,7 +17,7 @@ Read each matching skill before its part of the work. Several rows may apply to 
 | Choose or change ownership, interfaces, representation, modules, or execution order | [select-architecture](select-architecture/SKILL.md) |
 | Create, reconstruct, or update the target project's `architecture-map.md` | [select-architecture](select-architecture/SKILL.md) |
 | Review code or a proposed code change | [construct-code](construct-code/SKILL.md) for construction criteria and [verify-changes](verify-changes/SKILL.md) for evidence and acceptance; add the architecture, explanation, or performance skill when those concerns are in scope |
-| Explain code or interpret naming, comment, or design feedback; write or revise names, comments, explanations, or review records | [explain-code](explain-code/SKILL.md) |
+| Add, change, or review behavioral blocks for visible flow and missing or misleading comments; explain code, interpret feedback, or revise names, comments, explanations, or review records | [explain-code](explain-code/SKILL.md) |
 | Compare runtime or storage costs, or evaluate an optimization | [measure-performance](measure-performance/SKILL.md) |
 | Propose commit subjects or boundaries, or perform authorized commits, amendments, or history renames | [name-commits](name-commits/SKILL.md) |
 | Plan checks, assess completion, or maintain and resume a task's cross-session record | [verify-changes](verify-changes/SKILL.md) |

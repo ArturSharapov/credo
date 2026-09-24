@@ -1,6 +1,6 @@
 ---
 name: explain-code
-description: Edit names, comments, design explanations, and review records while preserving the maintainer’s terminology, meaning, and natural phrasing.
+description: Make code responsibilities visible through contextual flow comments; detect missing or misleading comments when implementing or reviewing code. Preserve meaning in names, comments, design explanations, and review records.
 ---
 
 
@@ -16,23 +16,39 @@ A naming correction applies through the relevant uses of the concept, including 
 |---|---|
 | Component definition | Intended observable behavior and its conditions, independent of storage or notation |
 | Public interface | What the caller provides/receives and the relevant contract |
-| Multi-stage function | What each non-obvious behavioral block does at that point in the sequence |
+| Multi-stage function | The action and responsibility of each meaningful behavioral part at that point in the sequence |
 | Representation constraint | The bound or layout dependency that makes the representation valid |
 | Design record | Why this design was chosen, alternatives, and unresolved choices |
 
-For a function requiring flow comments, cover each meaningful behavioral part, not a selective few; do not narrate every assignment. Phrase flow comments as the action performed, such as "Ensure ..." where that describes the code, rather than restating a static business rule. Do not extract functions merely to avoid explaining an inline block.
+### Make the flow visible
+
+Flow comments let a senior developer scan a function and recognize its responsibilities without first working through its implementation. When a function contains distinct phases or conditional paths, mark the meaningful behavioral parts where they begin. Straightforward code still needs a marker when it performs a distinct responsibility that would otherwise disappear into the surrounding work. A function-level summary or a distant comment does not label a newly inserted phase.
+
+Cover EACH meaningful behavioral part of such a function, including nested branches that perform distinct work. Group statements that serve one responsibility under one comment; assignments, guards, and loop mechanics do not each need narration. A short function or a direct call whose name already makes its sole responsibility visible may need no flow comment. Judge by whether the reader can identify the work while scanning, not by line count or algorithmic difficulty. Do not extract functions merely to label inline blocks.
+
+Describe the action performed here, including the relevant condition or ordering. Use concrete developer language such as "Remove expired reservations before assigning work" or "Ensure every segment stays within the boundary." A static rule or a vague label such as "Handle state" does not identify the workflow step. Explain why when that adds necessary understanding, but do not restrict comments to rationale: identifying what a block handles is itself a useful purpose.
+
+Read the wording in its actual location. Name the affected concept when a general-purpose function handles several kinds of records, state, or operations; a word such as "entry" may be clear inside a dedicated parser and ambiguous inside a shared update routine. Use the established terminology and only the qualification needed to identify the action's subject. Keep conditions accurate to the code rather than implying a broader check or restriction.
+
+Before adding, revising, or auditing comments, including checking whether comments are missing, read [comment guidance and examples](references/comment-guidance.md). The examples illustrate decisions, not required syntax, vocabulary, or layouts.
+
+### Preserve meaning and structure
 
 Preserve qualifications, concrete examples, deliberate emphasis, and human grouping of thoughts. Sentence count and line width do not define conceptual grouping. Never strip useful content to make prose shorter, or split every sentence into a new comment by default. Follow the project's formatter for code; do not invent universal comment punctuation rules from a local correction.
 
 When the maintainer supplies a before/after edit, compare the semantic difference and apply that difference to the requested scope. Do not rewrite pre-existing good comments during a review of comments the agent just added. Do not insert design-history explanations, claimed performance benefits, or invented terminology into usage comments.
 
-Before adding, rewriting, reformatting, or explicitly auditing comments, read [the maintainer's comment guidance](references/comment-guidance.md) completely. It preserves concrete examples of the maintainer's preferences; project-specific syntax and section conventions illustrate those preferences. Choose line breaks by meaning, never a generic wrapper or fixed column target. Keep a parameter's compact contract together; rephrase an unwieldy thought rather than breaking it mid-clause. Preserve deliberate brackets, emphasis, and IDE line-break markers.
+Choose line breaks by meaning, never a generic wrapper or fixed column target. Keep a parameter's compact contract together; rephrase an unwieldy thought rather than breaking it mid-clause. Preserve deliberate brackets, emphasis, and IDE line-break markers. When behavior changes, update the affected description to the new contract; preservation of meaning during a prose edit is not a reason to keep stale documentation.
 
-Preserve established section landmarks and their intended grouping. Where the project uses multi-line separators before testing or formatting sections, retain that layout and spacing; restore missing separators in edited sections when the project convention requires them.
+Preserve established section landmarks, their grouping, and surrounding spacing. Restore missing separators in edited sections where the project's convention requires them; choose no universal separator design.
 
-Read every changed comment with its surrounding code before finishing. Check that no qualification, detail, or intended interpretation changed, and that the landmarks remain intact.
+### Verify the affected flow
 
-When revising flow comments or interpreting a naming correction, read [meaning and scope examples](references/meaning-and-scope.md).
+Before finishing implementation or review, scan each affected function in full. Can a senior developer locate its meaningful responsibilities and conditional paths from the comments and clear operation names? Check for missing markers as well as poor wording. Then read those markers against their blocks: each must identify the actual action, subject, conditions, and relevant sequence without narrating individual statements.
+
+Check neighboring comments too, even when their text was unchanged: inserted, moved, or removed code may have changed what they appear to cover. Correct omissions and misleading scope within the affected flow; leave unrelated good comments intact. Compare every revised comment with its original for lost details, emphasis, grouping, or changed interpretation, and check that section landmarks remain intact. Formatting checks alone cannot establish this.
+
+When revising flow comments or interpreting a naming correction or the scope of a requested change, read [meaning and scope examples](references/meaning-and-scope.md).
 
 ## Understand natural language
 
