@@ -14,6 +14,8 @@ vpx skills add ArturSharapov/credo
 
 Type `$credo` in your conversation with the agent. [SKILL.md](SKILL.md) routes the current task to the relevant skills. Invoke `$issue-findings` explicitly for issue investigation reports; it is manual-only.
 
+Invoke `$challenge-solution` with a task to compare credible solutions, check the affected cases, and apply corrections across the work before accepting the result. It is manual-only and remains applicable through that task's revisions.
+
 ## Skills
 
 | Skill | Purpose |
@@ -24,6 +26,7 @@ Type `$credo` in your conversation with the agent. [SKILL.md](SKILL.md) routes t
 | [measure-performance](measure-performance/SKILL.md) | Compare implementations under the same workload and distinguish algorithm changes from storage choices. |
 | [verify-changes](verify-changes/SKILL.md) | Check behavior, structural constraints, and affected consumers; report verification gaps. |
 | [issue-findings](issue-findings/SKILL.md) | Investigate issues and compare solutions in the Before, After, Best solution format. Manual invocation only. |
+| [challenge-solution](challenge-solution/SKILL.md) | Challenge first choices against contracts, alternatives, and evidence; carry corrections through the task. Manual invocation only. |
 | [name-commits](name-commits/SKILL.md) | Group changes by purpose, write precise subjects, and perform authorized commit operations. |
 
 ## Project context

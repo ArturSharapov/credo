@@ -26,6 +26,8 @@ Select by the requested activity. A question about a function calls for explanat
 
 The [issue-findings](issue-findings/SKILL.md) skill is manual-only. Read and apply it only when the user explicitly invokes `$issue-findings`; do not select it automatically through Credo.
 
+The [challenge-solution](challenge-solution/SKILL.md) skill is manual-only. Read and apply it only when the user explicitly invokes `$challenge-solution` to challenge decisions and carry corrections through the task; do not select it automatically through Credo.
+
 ## Resolve project and skill paths
 
 Skill links above are relative to this file. The target project's `architecture-map.md` belongs to the project being worked on, even when Credo is installed elsewhere.
